@@ -1,7 +1,10 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import Layout from "./components/Layout.vue";
+import RadioList from "./components/RadioList.vue";
+</script>
 
 <template>
-    <main class="text-7xl font-bold text-red-800">
-        <p>teste</p>
-    </main>
+    <Layout>
+        <RadioList />
+    </Layout>
 </template>
