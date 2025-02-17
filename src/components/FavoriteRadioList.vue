@@ -44,15 +44,15 @@ const filterStations = (search: string) => {
                 </div>
             </div>
         </div>
-        <div class="bg-zinc-700 h-[80vh] rounded-lg text-zinc-950">
-            <div class="flex items-center gap-4 border-b-2 border-zinc-500">
+        <div class="bg-zinc-900 h-[80vh] rounded-lg text-zinc-100">
+            <div class="flex items-center gap-4 border-b-2 border-zinc-700">
                 <div class="flex items-center py-8 pl-14">
                     <PlayIcon
                         v-if="!radioStationsStore.isPlaying"
                         class="stroke-0 size-14 fill-zinc-950" />
                     <SquareIcon v-else class="stroke-0 size-14 fill-zinc-950" />
                 </div>
-                <p class="font-bold uppercase md:text-4xl">
+                <p class="font-bold uppercase md:text-4xl text-zinc-300">
                     {{ radioStationsStore.selectedMusic }}
                 </p>
             </div>
