@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import type { RadioStation } from "../../types/radio.types";
+import { EditRadioStation, type RadioStation } from "../../types/radio.types";
 import {
     CheckIcon,
     PencilIcon,
     PlayIcon,
+    SatelliteIcon,
     SquareIcon,
     TrashIcon,
     XIcon,
@@ -15,12 +16,12 @@ const props = defineProps<{
     station: RadioStation;
 }>();
 
-const formEdit = {
+const formEdit = ref<EditRadioStation>({
     changeuuid: props.station.changeuuid,
     name: props.station.name,
     country: props.station.country,
     state: props.station.state,
-};
+});
 
 const editMode = ref<boolean>(false);
 
@@ -30,8 +31,15 @@ const toggleMusic = (station: { name: string }) => {
     musicStore.toggleMusic(station);
 };
 
-const editStation = () => {
-    musicStore.updateFavorite(formEdit);
+const updateStation = (uuid: string, formEdit: Partial<RadioStation>) => {
+    const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
+
+    const updatedFavorites = favorites.map((item: RadioStation) =>
+        item.changeuuid === uuid ? { ...item, ...formEdit } : item
+    );
+
+    musicStore.favorites = updatedFavorites; // Garante reatividade
+
     editMode.value = false;
 };
 </script>
@@ -55,30 +63,26 @@ const editStation = () => {
                     {{ station.country }}, {{ station.state }}
                 </p>
             </div>
-            <div v-else class="grid grid-cols-3 gap-2">
+            <div v-else class="grid grid-cols-3 text-blue-800">
+                <span>Edit Form</span>
                 <div
                     class="flex flex-col items-start col-span-3 gap-1 text-left w-fit">
-                    <label for="name">Name:</label>
                     <input
                         type="text"
-                        class="p-2 text-xl bg-transparent border rounded"
+                        class="text-3xl font-bold bg-transparent border-0 rounded-xl focus:ring-0 focus:outline-none"
                         v-model="formEdit.name" />
                 </div>
-                <div class="flex items-center gap-4">
-                    <div
-                        class="flex flex-col items-start gap-1 text-left w-fit">
-                        <label for="name">Country:</label>
+                <div class="flex items-center w-full gap-4">
+                    <div class="flex flex-col items-start gap-1 text-left">
                         <input
                             type="text"
-                            class="p-2 text-xl bg-transparent border rounded"
+                            class="text-xl font-semibold bg-transparent border-0 rounded-xl focus:ring-0 focus:outline-none"
                             v-model="formEdit.country" />
                     </div>
-                    <div
-                        class="flex flex-col items-start gap-1 text-left w-fit">
-                        <label for="name">State:</label>
+                    <div class="flex flex-col items-start gap-1 text-left">
                         <input
                             type="text"
-                            class="p-2 text-xl bg-transparent border rounded"
+                            class="text-xl font-semibold bg-transparent border-0 rounded-xl focus:ring-0 focus:outline-none"
                             v-model="formEdit.state" />
                     </div>
                 </div>
@@ -88,10 +92,16 @@ const editStation = () => {
             <button type="button">
                 <PencilIcon
                     v-if="!editMode"
-                    @click="editMode = true"
+                    @click="
+                        () => {
+                            editMode = true;
+
+                            console.log(station.changeuuid);
+                        }
+                    "
                     class="size-8 fill-zinc-950" />
                 <CheckIcon
-                    @click="editStation"
+                    @click="updateStation(station.changeuuid, formEdit)"
                     v-else
                     class="size-8 text-zinc-950" />
             </button>

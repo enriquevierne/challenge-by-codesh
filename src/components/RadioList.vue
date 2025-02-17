@@ -7,18 +7,28 @@ import RadioItem from "./RadioItem.vue";
 
 const allStations = ref<RadioStation[]>([]);
 const originalStations = ref<RadioStation[]>([]);
-const isLoading = ref(true);
+const isLoading = ref<boolean>(true);
+const currentPage = ref<number>(1);
+const itemsPerPage: number = 10;
+const hasNextPage = ref<boolean>(true);
 
-const fetchStations = async () => {
+const fetchStations = async (page: number) => {
+    if (page < 1) return;
+
+    isLoading.value = true;
+    currentPage.value = page;
+
     try {
         const response = await axios.get(
-            "https://de1.api.radio-browser.info/json/stations/search"
+            `https://de1.api.radio-browser.info/json/stations/search?offset=${currentPage.value}&limit=${itemsPerPage}`
         );
         allStations.value = response.data;
         originalStations.value = [...allStations.value];
         isLoading.value = false;
+        hasNextPage.value = response.data.length === itemsPerPage;
     } catch (error) {
         console.error("Erro ao buscar estações:", error);
+        isLoading.value = false;
     }
 };
 
@@ -38,7 +48,7 @@ const filterStations = (search: string) => {
 };
 
 onMounted(() => {
-    fetchStations();
+    fetchStations(1);
 });
 </script>
 <template>
@@ -59,11 +69,27 @@ onMounted(() => {
                     <Loader class="text-blue-500 animate-spin size-10" />
                 </div>
                 <ul
-                    class="flex flex-col w-full gap-2 *:rounded-xl *:bg-zinc-800 *:p-4 *:flex *:justify-between *:items-center overflow-y-scroll h-[80vh] scrollbar pr-2 rounded-lg">
+                    class="flex flex-col w-full gap-2 *:rounded-xl *:bg-zinc-800 *:p-4 *:flex *:justify-between *:items-center overflow-y-scroll h-[75vh] scrollbar pr-2 rounded-lg">
                     <RadioItem
                         v-for="station in allStations"
                         :station="station" />
                 </ul>
+                <div
+                    class="flex items-center justify-between p-4 rounded-xl bg-zinc-800">
+                    <button
+                        @click="fetchStations(currentPage - 1)"
+                        :disabled="currentPage === 1"
+                        class="disabled:text-neutral-600">
+                        Anterior
+                    </button>
+                    <span>{{ currentPage }}</span>
+                    <button
+                        @click="fetchStations(currentPage + 1)"
+                        :disabled="isLoading || !hasNextPage"
+                        class="disabled:text-neutral-600">
+                        Próximo
+                    </button>
+                </div>
             </div>
         </div>
     </div>

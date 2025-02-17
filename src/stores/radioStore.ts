@@ -35,17 +35,6 @@ export const useRadioStation = defineStore("radioStation", {
             );
             this.saveFavorites();
         },
-        updateFavorite(station: EditRadioStation) {
-            const index = this.favorites.findIndex(
-                (station: EditRadioStation) =>
-                    station.changeuuid === station.changeuuid
-            );
-
-            if (index !== -1) {
-                this.favorites[index] = { ...station };
-                this.saveFavorites();
-            }
-        },
         toggleFavorite(station: RadioStation) {
             if (
                 this.favorites.some(
