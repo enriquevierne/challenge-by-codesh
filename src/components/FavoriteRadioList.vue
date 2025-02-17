@@ -1,31 +1,26 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import type { RadioStation } from "../../types/radio.types";
-import {
-    PencilIcon,
-    PlayIcon,
-    SearchIcon,
-    SquareIcon,
-    TrashIcon,
-} from "lucide-vue-next";
+import { PlayIcon, SearchIcon, SquareIcon } from "lucide-vue-next";
+import FavoriteRadioItem from "./FavoriteRadioItem.vue";
+import { useRadioStation } from "../stores/radioStore";
 
-const originalStations = ref([]);
-const allStations = ref<RadioStation[]>([]);
-const isPlaying = ref(false);
+const radioStationsStore = useRadioStation();
+const allStations = ref<RadioStation[]>([...radioStationsStore.favorites]);
 
 const filterStations = (search: string) => {
     if (search === "") {
-        allStations.value = [...originalStations.value];
+        radioStationsStore.favorites = [...allStations.value];
         return;
     }
-    /* const searchLower = search.toLowerCase();
-    allStations.value = originalStations.value.filter((station) => {
+    const searchLower = search.toLowerCase();
+    radioStationsStore.favorites = allStations.value.filter((station) => {
         return (
             station.name.toLowerCase().includes(searchLower) ||
             station.country.toLowerCase().includes(searchLower) ||
             station.language.toLowerCase().includes(searchLower)
         );
-    }); */
+    });
 };
 </script>
 <template>
@@ -53,45 +48,19 @@ const filterStations = (search: string) => {
             <div class="flex items-center gap-4 border-b-2 border-zinc-500">
                 <div class="flex items-center py-8 pl-14">
                     <PlayIcon
-                        v-if="isPlaying"
-                        class="stroke-0 size-14 fill-zinc-950"
-                        39 />
+                        v-if="!radioStationsStore.isPlaying"
+                        class="stroke-0 size-14 fill-zinc-950" />
                     <SquareIcon v-else class="stroke-0 size-14 fill-zinc-950" />
                 </div>
-                <p class="text-4xl font-bold uppercase">Nome da rádio atual</p>
-                <div></div>
+                <p class="text-4xl font-bold uppercase">
+                    {{ radioStationsStore.selectedMusic }}
+                </p>
             </div>
-            <ul class="flex flex-col gap-4 p-4">
-                <li
-                    class="flex items-center justify-between rounded-lg bg-zinc-500">
-                    <div class="flex items-center gap-6 p-4 px-6">
-                        <div
-                            class="flex items-center p-4 rounded-full bg-zinc-700">
-                            <button type="button" v-if="isPlaying">
-                                <PlayIcon
-                                    class="stroke-0 size-14 fill-zinc-950" />
-                            </button>
-                            <button type="button" v-else>
-                                <SquareIcon
-                                    class="stroke-0 size-14 fill-zinc-950" />
-                            </button>
-                        </div>
-                        <div>
-                            <p class="text-3xl font-bold">Sertanejo Brasil</p>
-                            <p class="text-xl font-semibold text-zinc-800">
-                                Brasil, RJ
-                            </p>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-6 p-4">
-                        <button type="button">
-                            <PencilIcon class="size-8 fill-zinc-950" />
-                        </button>
-                        <button type="button">
-                            <TrashIcon class="size-8 fill-zinc-950" />
-                        </button>
-                    </div>
-                </li>
+            <ul
+                class="flex flex-col gap-4 p-4 overflow-y-auto scrollbar h-[65vh]">
+                <FavoriteRadioItem
+                    v-for="station in radioStationsStore.favorites"
+                    :station="station" />
             </ul>
         </div>
     </div>

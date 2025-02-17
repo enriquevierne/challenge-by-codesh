@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { CheckIcon, Loader, MenuIcon } from "lucide-vue-next";
+import { Loader, MenuIcon } from "lucide-vue-next";
 import { onMounted, ref } from "vue";
 import axios from "axios";
 import type { RadioStation } from "../../types/radio.types";
+import RadioItem from "./RadioItem.vue";
 
 const allStations = ref<RadioStation[]>([]);
 const originalStations = ref<RadioStation[]>([]);
@@ -59,12 +60,9 @@ onMounted(() => {
                 </div>
                 <ul
                     class="flex flex-col w-full gap-2 *:rounded-xl *:bg-zinc-800 *:p-4 *:flex *:justify-between *:items-center overflow-y-scroll h-[80vh] scrollbar pr-2 rounded-lg">
-                    <li
+                    <RadioItem
                         v-for="station in allStations"
-                        :key="station.changeuuid">
-                        <p class="w-4/5">{{ station.name }}</p>
-                        <CheckIcon class="text-blue-500 size-8" />
-                    </li>
+                        :station="station" />
                 </ul>
             </div>
         </div>
