@@ -37,15 +37,9 @@
     npm run dev
     ```
 
-    :::warn
-    .gitignore:
-    Lembre-se de adicionar a pasta `node_modules` ao seu .gitignore para evitar que as dependências sejam enviadas para o repositório.
-    :::
+    > .gitignore:
+    > Lembre-se de adicionar a pasta `node_modules` ao seu .gitignore para evitar que as dependências sejam enviadas para o repositório.
 
 #### Informações Adicionais
 
 This is a challenge by Coodesh.
-
-```
-
-```
