@@ -24,22 +24,22 @@ const filterStations = (search: string) => {
 };
 </script>
 <template>
-    <div class="p-8 mx-auto space-y-4 md:w-2/3">
+    <div class="w-full p-8 mx-auto space-y-4 md:w-2/3">
         <div class="flex flex-col gap-4">
             <div>
-                <h1 class="text-4xl font-semibold text-center">
+                <h1 class="font-semibold text-center md:text-4xl">
                     Radio Browser
                 </h1>
             </div>
             <div class="flex items-center justify-between">
-                <p class="w-1/2 pl-6 text-2xl">Favorite Radios</p>
+                <p class="w-1/2 pl-6 md:text-2xl">Favorite Radios</p>
                 <div
                     class="flex items-center border-b-2 border-transparent w-fit focus-within:border-blue-600 focus-within:border-b-2">
                     <SearchIcon class="text-blue-600 size-8" />
                     <input
                         @input="(e: Event) => filterStations((e.target as HTMLInputElement).value)"
                         type="text"
-                        class="w-40 pl-1 text-xl bg-transparent border-0 rounded-xl focus:ring-0 focus:outline-none"
+                        class="w-40 pl-1 bg-transparent border-0 md:text-xl rounded-xl focus:ring-0 focus:outline-none"
                         placeholder="Search stations" />
                 </div>
             </div>
@@ -52,7 +52,7 @@ const filterStations = (search: string) => {
                         class="stroke-0 size-14 fill-zinc-950" />
                     <SquareIcon v-else class="stroke-0 size-14 fill-zinc-950" />
                 </div>
-                <p class="text-4xl font-bold uppercase">
+                <p class="font-bold uppercase md:text-4xl">
                     {{ radioStationsStore.selectedMusic }}
                 </p>
             </div>

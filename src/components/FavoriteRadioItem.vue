@@ -44,7 +44,7 @@ const updateStation = (uuid: string, formEdit: Partial<RadioStation>) => {
 };
 </script>
 <template>
-    <li class="flex items-center justify-between rounded-lg bg-zinc-500">
+    <li class="flex items-center justify-between w-full rounded-lg bg-zinc-500">
         <div class="flex items-center gap-6 p-4 px-6">
             <div class="flex items-center p-4 rounded-full bg-zinc-700">
                 <button
@@ -58,8 +58,8 @@ const updateStation = (uuid: string, formEdit: Partial<RadioStation>) => {
                 </button>
             </div>
             <div v-if="!editMode">
-                <p class="text-3xl font-bold">{{ station.name }}</p>
-                <p class="text-xl font-semibold text-zinc-800">
+                <p class="font-bold md:text-3xl">{{ station.name }}</p>
+                <p class="font-semibold md:md:text-xl text-zinc-800">
                     {{ station.country }}, {{ station.state }}
                 </p>
             </div>
@@ -69,26 +69,26 @@ const updateStation = (uuid: string, formEdit: Partial<RadioStation>) => {
                     class="flex flex-col items-start col-span-3 gap-1 text-left w-fit">
                     <input
                         type="text"
-                        class="text-3xl font-bold bg-transparent border-0 rounded-xl focus:ring-0 focus:outline-none"
+                        class="font-bold bg-transparent border-0 md:text-3xl rounded-xl focus:ring-0 focus:outline-none"
                         v-model="formEdit.name" />
                 </div>
                 <div class="flex items-center w-full gap-4">
                     <div class="flex flex-col items-start gap-1 text-left">
                         <input
                             type="text"
-                            class="text-xl font-semibold bg-transparent border-0 rounded-xl focus:ring-0 focus:outline-none"
+                            class="font-semibold bg-transparent border-0 md:md:text-xl rounded-xl focus:ring-0 focus:outline-none"
                             v-model="formEdit.country" />
                     </div>
                     <div class="flex flex-col items-start gap-1 text-left">
                         <input
                             type="text"
-                            class="text-xl font-semibold bg-transparent border-0 rounded-xl focus:ring-0 focus:outline-none"
+                            class="font-semibold bg-transparent border-0 md:md:text-xl rounded-xl focus:ring-0 focus:outline-none"
                             v-model="formEdit.state" />
                     </div>
                 </div>
             </div>
         </div>
-        <div class="flex items-center gap-6 p-4">
+        <div class="flex flex-col items-center gap-6 p-4 md:flex-row">
             <button type="button">
                 <PencilIcon
                     v-if="!editMode"
