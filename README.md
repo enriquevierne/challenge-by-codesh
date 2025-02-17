@@ -32,12 +32,20 @@
     ```
 
 4. Rode o projeto:
+
     ```bash
     npm run dev
     ```
-5. .gitignore:
-    ###### Lembre-se de adicionar a pasta `node_modules` ao seu .gitignore para evitar que as dependências sejam enviadas para o repositório.
+
+    :::warn
+    .gitignore:
+    Lembre-se de adicionar a pasta `node_modules` ao seu .gitignore para evitar que as dependências sejam enviadas para o repositório.
+    :::
 
 #### Informações Adicionais
 
 This is a challenge by Coodesh.
+
+```
+
+```
