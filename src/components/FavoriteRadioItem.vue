@@ -38,7 +38,7 @@ const updateStation = (uuid: string, formEdit: Partial<RadioStation>) => {
         item.changeuuid === uuid ? { ...item, ...formEdit } : item
     );
 
-    musicStore.favorites = updatedFavorites; // Garante reatividade
+    musicStore.favorites = updatedFavorites;
 
     editMode.value = false;
 };

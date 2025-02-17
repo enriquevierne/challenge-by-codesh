@@ -69,8 +69,9 @@ onMounted(() => {
                     <Loader class="text-blue-500 animate-spin size-10" />
                 </div>
                 <ul
-                    class="flex flex-col w-full gap-2 *:rounded-xl *:bg-zinc-800 *:p-4 *:flex *:justify-between *:items-center overflow-y-scroll h-[75vh] scrollbar pr-2 rounded-lg">
+                    class="flex flex-col w-full gap-2 *:rounded-xl *:bg-zinc-800 *:p-4 *:flex *:justify-between *:items-center overflow-y-scroll h-[75 vh] scrollbar pr-2 rounded-lg">
                     <RadioItem
+                        v-if="!isLoading"
                         v-for="station in allStations"
                         :station="station" />
                 </ul>
