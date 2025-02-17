@@ -49,8 +49,8 @@ const filterStations = (search: string) => {
                 <div class="flex items-center py-8 pl-14">
                     <PlayIcon
                         v-if="!radioStationsStore.isPlaying"
-                        class="stroke-0 size-14 fill-zinc-950" />
-                    <SquareIcon v-else class="stroke-0 size-14 fill-zinc-950" />
+                        class="stroke-0 size-14 fill-blue-700" />
+                    <SquareIcon v-else class="stroke-0 size-14 fill-blue-700" />
                 </div>
                 <p class="font-bold uppercase md:text-4xl text-zinc-300">
                     {{ radioStationsStore.selectedMusic }}
