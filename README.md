@@ -1,5 +1,43 @@
-# Vue 3 + TypeScript + Vite
+# Radio Browser
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+**Descrição**: Um web app que permite você ser livre para escolher qualquer estação de rádio do mundo e ainda ouvi-las e favorita-las.
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+## Tecnologias Usadas
+
+-   **Vue.js**: Framework para o frontend.
+-   **Axios**: Biblioteca para fazer requisições HTTP.
+-   **TailwindCSS**: Framework de estilização.
+-   **Lucide**: Biblioteca para ícones.
+-   **TypeScript**: Tipagem estática para maior segurança de dados.
+-   **Pinia**: Gerenciamento de estados e componentes reativos.
+
+## Como Instalar e Usar
+
+1. Clone o repositório para sua máquina:
+
+    ```bash
+    git clone https://github.com/enriquevierne/challenge-by-codesh
+    ```
+
+2. Acesse a pasta do projeto:
+
+    ```bash
+    cd challeng-by-codesh
+    ```
+
+3. Rode o seguinte comando no terminal:
+
+    ```bash
+    npm install
+    ```
+
+4. Rode o projeto:
+    ```bash
+    npm run dev
+    ```
+5. .gitignore
+   Lembre-se de adicionar a pasta `node_modules` ao seu .gitignore para evitar que as dependências sejam enviadas para o repositório.
+
+#### Informações Adicionais
+
+This is a challenge by Coodesh.
