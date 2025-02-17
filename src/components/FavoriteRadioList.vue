@@ -24,7 +24,7 @@ const filterStations = (search: string) => {
 };
 </script>
 <template>
-    <div class="w-2/3 p-8 mx-auto space-y-4">
+    <div class="p-8 mx-auto space-y-4 md:w-2/3">
         <div class="flex flex-col gap-4">
             <div>
                 <h1 class="text-4xl font-semibold text-center">

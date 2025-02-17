@@ -12,7 +12,7 @@ const isLoading = ref(true);
 const fetchStations = async () => {
     try {
         const response = await axios.get(
-            "https://de1.api.radio-browser.info/json/stations/search?limit=50"
+            "https://de1.api.radio-browser.info/json/stations/search"
         );
         allStations.value = response.data;
         originalStations.value = [...allStations.value];
@@ -42,7 +42,7 @@ onMounted(() => {
 });
 </script>
 <template>
-    <div class="w-1/3 h-screen p-4 max-w-96 bg-zinc-900">
+    <div class="h-screen p-4 md:w-1/3 md:max-w-96 bg-zinc-900">
         <div class="flex flex-col w-full gap-4">
             <div class="flex items-center justify-end w-full">
                 <MenuIcon class="text-blue-500 size-10" />

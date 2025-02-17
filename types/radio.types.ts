@@ -38,3 +38,10 @@ export type RadioStation = {
     geo_distance: number | null;
     has_extended_info: boolean;
 };
+
+export type EditRadioStation = {
+    changeuuid: string;
+    name: string;
+    country: string;
+    state: string;
+};

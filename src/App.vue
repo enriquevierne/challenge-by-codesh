@@ -6,7 +6,7 @@ import RadioList from "./components/RadioList.vue";
 
 <template>
     <Layout>
-        <div class="flex">
+        <div class="flex flex-col md:flex-row">
             <RadioList />
             <FavoriteRadioList />
         </div>

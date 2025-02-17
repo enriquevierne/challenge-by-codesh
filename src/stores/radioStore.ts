@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import type { RadioStation } from "../../types/radio.types";
+import type { EditRadioStation, RadioStation } from "../../types/radio.types";
 
 export const useRadioStation = defineStore("radioStation", {
     state: () => ({
@@ -34,6 +34,17 @@ export const useRadioStation = defineStore("radioStation", {
                 (s: RadioStation) => s.changeuuid !== station.changeuuid
             );
             this.saveFavorites();
+        },
+        updateFavorite(station: EditRadioStation) {
+            const index = this.favorites.findIndex(
+                (station: EditRadioStation) =>
+                    station.changeuuid === station.changeuuid
+            );
+
+            if (index !== -1) {
+                this.favorites[index] = { ...station };
+                this.saveFavorites();
+            }
         },
         toggleFavorite(station: RadioStation) {
             if (
