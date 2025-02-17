@@ -30,6 +30,9 @@ export const useRadioStation = defineStore("radioStation", {
             }
         },
         removeFavorite(station: RadioStation) {
+            if (this.selectedMusic == station.name) {
+                this.toggleMusic("");
+            }
             this.favorites = this.favorites.filter(
                 (s: RadioStation) => s.changeuuid !== station.changeuuid
             );

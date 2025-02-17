@@ -64,7 +64,7 @@ onMounted(() => {
                     class="w-full p-2 rounded-xl bg-zinc-700"
                     placeholder="Search here" />
             </div>
-            <div class="w-full">
+            <div class="flex flex-col justify-between w-full h-[85vh]">
                 <div v-if="isLoading" class="m-auto w-fit">
                     <Loader class="text-blue-500 animate-spin size-10" />
                 </div>
